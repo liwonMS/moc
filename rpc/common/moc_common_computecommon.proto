@@ -187,7 +187,7 @@ message GuestAgentConfiguration {
 
 message AffinityConfiguration {
 	uint32 mode = 1;
-	string groupId = 2;
+	string ruleName = 2;
 }
 
 /* Values fetched from Win32_Processor class.
