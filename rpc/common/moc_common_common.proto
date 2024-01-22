@@ -112,6 +112,20 @@ message Status {
 	ValidationStatus validationStatus = 6;
 }
 
+// in the current implementation, cloudagent objects are generally identified by their group name 
+// and name. These fields are used to identify if a POST request should be treated as a create or 
+// an update
+message CloudSubResource {
+	string groupName = 1;
+	string name = 2;
+}
+
+// in the current implementation, nodeagent objects are generally identified by their name
+// this field is used to identify if a POST request should be treated as a create or an update
+message NodeSubResource {
+	string name = 1;
+}
+
 message Entity {
 	bool IsPlaceholder = 1; // On a multi-node system, the entity (such as a VM) is created on a node where 
 							// IsPlacehoder is false. On all the other nodes, IsPlaceholder is set to true.
@@ -184,6 +198,7 @@ enum ProviderType {
 	BareMetalHost          = 35;
 	Authentication         = 36;
 	HealthMonitor          = 37;
+	AvailabilitySet		   = 38;
 }
 
 // Operations specific to a provider
@@ -313,6 +328,8 @@ enum ProviderAccessOperation {
 
 	VirtualNetwork_Create           = 3400;
 	VirtualNetwork_Update           = 3401;
+	AvailabilitySet_Create		    = 3500;
+	AvailabilitySet_Delete		    = 3501;
 }
 
 extend google.protobuf.FieldOptions {
